@@ -22,8 +22,8 @@ BLOCK_SIZE_STT = 8000  # 语音识别块大小
 
 # ----------------- Dify 配置 -----------------
 # 使用你提供的 IP 和 API Key
-DIFY_URL = "http://192.168.137.4/v1/chat-messages"
-DIFY_API_KEY = "app-mUsuCB9zdA3vqM3HFnCIDHCm"
+DIFY_URL = "http://127.0.0.1/v1/chat-messages"
+DIFY_API_KEY = "替换为你的DIFY密钥"
 conversation_id = None  # 连续会话 ID
 
 # ----------------- TTS 配置 -----------------
@@ -367,3 +367,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         # 当在 main 循环中按 Ctrl+C 时的退出处理
         print("\n程序已强制退出。")
+
