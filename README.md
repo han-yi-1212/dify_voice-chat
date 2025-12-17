@@ -24,7 +24,6 @@
 | `客户端.py` | **客户端** | 负责麦克风录音、Vosk 识别、调用 Dify API 以及接收音频播放。 |
 | `main.py` | **TTS 服务端** | 基于 FastAPI 和 WebSocket 的语音合成服务，负责将文字转为 WAV 音频。 |
 
-> **建议**：为了方便命令运行，建议将 `服务端.py` 重命名为 `tts_server.py` 或 `main.py`。本教程假设您已将其重命名为 `tts_server.py`。
 
 ## 🛠️ 环境准备
 
@@ -53,7 +52,7 @@ pip install fastapi uvicorn "uvicorn[standard]" torch TTS
 
 ## ⚙️ 配置指南
 
-在运行之前，请修改 `box_8.py` 中的配置区以匹配您的环境：
+在运行之前，请修改 `客户端.py` 中的配置区以匹配您的环境：
 
 ```python
 # 客户端.py
