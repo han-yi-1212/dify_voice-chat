@@ -1,5 +1,5 @@
 * **`main.py`**：这是 **TTS（语音合成）服务器**，基于 FastAPI 和 Coqui TTS。
-* **`客户端.py`**：这实际上是 **客户端（终端）**，它负责录音、调用 Vosk 进行识别、请求 Dify API，并接收 TTS 服务器的音频进行播放。
+* **`客户端.py`**：它负责录音、调用 Vosk 进行识别、请求 Dify API，并接收 TTS 服务器的音频进行播放。
 
 # Dify AI Voice Assistant (语音通话助手)
 
@@ -21,8 +21,8 @@
 
 | 文件名 | 类型 | 描述 |
 | --- | --- | --- |
-| `box_8.py` | **客户端** | 负责麦克风录音、Vosk 识别、调用 Dify API 以及接收音频播放。 |
-| `服务端.py` | **TTS 服务端** | 基于 FastAPI 和 WebSocket 的语音合成服务，负责将文字转为 WAV 音频。 |
+| `客户端.py` | **客户端** | 负责麦克风录音、Vosk 识别、调用 Dify API 以及接收音频播放。 |
+| `main.py` | **TTS 服务端** | 基于 FastAPI 和 WebSocket 的语音合成服务，负责将文字转为 WAV 音频。 |
 
 > **建议**：为了方便命令运行，建议将 `服务端.py` 重命名为 `tts_server.py` 或 `main.py`。本教程假设您已将其重命名为 `tts_server.py`。
 
@@ -33,10 +33,10 @@
 请确保您的环境已安装 Python 3.8+。建议创建虚拟环境并安装以下依赖：
 
 ```bash
-# 客户端依赖 (box_8.py)
+# 客户端依赖 (客户端.py)
 pip install sounddevice numpy vosk requests websockets soundfile
 
-# 服务端依赖 (tts_server.py)
+# 服务端依赖 (main.py)
 pip install fastapi uvicorn "uvicorn[standard]" torch TTS
 
 ```
@@ -56,7 +56,7 @@ pip install fastapi uvicorn "uvicorn[standard]" torch TTS
 在运行之前，请修改 `box_8.py` 中的配置区以匹配您的环境：
 
 ```python
-# box_8.py
+# 客户端.py
 
 # Dify 配置
 DIFY_URL = "http://YOUR_DIFY_IP/v1/chat-messages"
@@ -73,10 +73,10 @@ TTS_SERVER_WS = "ws://127.0.0.1:8000/ws/tts"
 
 在一个终端窗口中运行 TTS 服务。
 
-> 注意：如果您没有重命名 `服务端.py`，请将下方的 `tts_server` 替换为 `服务端`。
+> 注意：如果您没有重命名 `服务端.py`，请将下方的 `main` 替换为 `服务端代码具体名称(不带.py)`。
 
 ```bash
-uvicorn tts_server:app --host 0.0.0.0 --port 8000 --reload
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 ```
 
@@ -87,7 +87,7 @@ uvicorn tts_server:app --host 0.0.0.0 --port 8000 --reload
 打开一个新的终端窗口，运行客户端代码：
 
 ```bash
-python box_8.py
+python 客户端.py
 
 ```
 
@@ -101,7 +101,7 @@ python box_8.py
 ## ⚠️ 常见问题 (Troubleshooting)
 
 1. **TTS 连接失败**:
-* 检查 `box_8.py` 中的 `TTS_SERVER_WS` IP 地址是否正确。如果客户端和服务端在同一台电脑，请使用 `127.0.0.1` 或 `localhost`。如果在局域网不同电脑，请使用服务端的局域网 IP (如 `192.168.x.x`)。
+* 检查 `客户端.py` 中的 `TTS_SERVER_WS` IP 地址是否正确。如果客户端和服务端在同一台电脑，请使用 `127.0.0.1` 或 `localhost`。如果在局域网不同电脑，请使用服务端的局域网 IP (如 `192.168.x.x`)。
 
 
 2. **Sounddevice 报错**:
@@ -109,7 +109,7 @@ python box_8.py
 
 
 3. **Vosk 模型未找到**:
-* 确保解压后的文件夹名称与代码中的 `VOSK_MODEL_PATH` 一致，且位于 `box_8.py` 同级目录下。
+* 确保解压后的文件夹名称与代码中的 `VOSK_MODEL_PATH` 一致，且位于 `客户端.py` 同级目录下。
 
 
 
