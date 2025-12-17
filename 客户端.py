@@ -28,7 +28,7 @@ conversation_id = None  # 连续会话 ID
 
 # ----------------- TTS 配置 -----------------
 # 使用你提供的 TTS 服务器地址
-TTS_SERVER_WS = "ws://192.168.137.4:8000/ws/tts"
+TTS_SERVER_WS = "ws://127.0.0.1:8000/ws/tts"
 
 # ----------------- 音频设备配置 -----------------
 # 麦克风和扬声器索引将在初始化函数中设置
@@ -367,4 +367,5 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         # 当在 main 循环中按 Ctrl+C 时的退出处理
         print("\n程序已强制退出。")
+
 
